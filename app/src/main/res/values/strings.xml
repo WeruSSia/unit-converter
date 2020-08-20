@@ -11,4 +11,5 @@
         <item>kg</item>
         <item>t</item>
     </string-array>
+    <string name="to">to</string>
 </resources>
