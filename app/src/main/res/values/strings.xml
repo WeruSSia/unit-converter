@@ -1,15 +1,5 @@
 <resources>
     <string name="app_name">unit-converter</string>
     <string name="convert">convert</string>
-    <string-array name="units_array">
-        <item>mm</item>
-        <item>cm</item>
-        <item>m</item>
-        <item>km</item>
-        <item>mg</item>
-        <item>g</item>
-        <item>kg</item>
-        <item>t</item>
-    </string-array>
     <string name="to">to</string>
 </resources>
