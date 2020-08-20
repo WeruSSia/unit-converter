@@ -39,7 +39,7 @@ class Converter(
                     "km" -> outputValue = inputValue
                 }
             }
-            resultTextView.text = outputValue.toString()
+            resultTextView.text = "$outputValue $outputUnit"
         } else if (weightUnits.contains(inputUnit) && weightUnits.contains(outputUnit)) {
             when (inputUnit) {
                 "mg" -> when (outputUnit) {
@@ -67,9 +67,9 @@ class Converter(
                     "t" -> outputValue = inputValue
                 }
             }
-            resultTextView.text = outputValue.toString()
+            resultTextView.text = "$outputValue $outputUnit"
         } else {
-            resultTextView.text = "Cannot convert!"
+            resultTextView.text = "Cannot convert from $inputUnit to $outputUnit!"
         }
     }
 }
