@@ -16,10 +16,11 @@
             android:id="@+id/amount_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="@string/amount"
             android:importantForAutofill="no"
             android:inputType="numberDecimal" />
     </LinearLayout>
@@ -29,44 +30,45 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <Spinner
             android:id="@+id/from_unit_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/to"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"/>
+            android:text="@string/to" />
 
         <Spinner
             android:id="@+id/to_unit_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1" />
     </LinearLayout>
-
 
     <Button
         android:id="@+id/convert_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:shadowColor="@color/colorAccent"
         android:text="@string/convert" />
 
     <TextView
         android:id="@+id/output_text_view"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        />
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
