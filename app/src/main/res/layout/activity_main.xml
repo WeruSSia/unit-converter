@@ -40,11 +40,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/unit"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:layout_weight="1">
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:hint="@string/unit"
+            android:orientation="horizontal">
 
             <AutoCompleteTextView
                 android:id="@+id/from_unit_dropdown"
@@ -57,21 +57,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/to" />
+            android:text="@string/to"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
 
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/unit"
-            android:orientation="horizontal"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/unit"
+            android:orientation="horizontal">
 
             <AutoCompleteTextView
                 android:id="@+id/to_unit_dropdown"

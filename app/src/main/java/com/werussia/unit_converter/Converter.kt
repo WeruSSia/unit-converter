@@ -68,11 +68,11 @@ class Converter(
                 }
             }
             resultTextView.text = "$outputValue $outputUnit"
-        }else if(inputUnit==""){
+        } else if (inputUnit == "") {
             resultTextView.text = "Choose input unit!"
-        }else if(outputUnit==""){
-            resultTextView.text="Choose output unit!"
-        }else {
+        } else if (outputUnit == "") {
+            resultTextView.text = "Choose output unit!"
+        } else {
             resultTextView.text = "Cannot convert from $inputUnit to $outputUnit!"
         }
     }
