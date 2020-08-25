@@ -19,17 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fromSpinner: Spinner = findViewById(R.id.from_unit_spinner)
-        val toSpinner: Spinner = findViewById(R.id.to_unit_spinner)
+        val fromDropdownMenu: AutoCompleteTextView = findViewById(R.id.from_unit_dropdown)
+        val toDropdownMenu: AutoCompleteTextView = findViewById(R.id.to_unit_dropdown)
 
-        setSpinner(fromSpinner)
-        setSpinner(toSpinner)
+        setDropdownMenu(fromDropdownMenu)
+        setDropdownMenu(toDropdownMenu)
 
         val inputEditText: EditText = findViewById(R.id.amount_input)
         val outputTextView: TextView = findViewById(R.id.output_text_view)
         val convertButton: Button = findViewById(R.id.convert_button)
 
-        setButton(convertButton, fromSpinner, toSpinner, inputEditText, outputTextView)
+        setButton(convertButton, fromDropdownMenu, toDropdownMenu, inputEditText, outputTextView)
 
         inputEditText.addTextChangedListener(textWatcher)
     }
@@ -46,23 +46,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSpinner(spinner: Spinner) {
+    private fun setDropdownMenu(dropdownMenu: AutoCompleteTextView) {
         val arrayAdapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.dropdown_menu_popup_item,
             lengthUnits + weightUnits
         )
-        with(spinner)
-        {
-            adapter = arrayAdapter
-            setSelection(0, false)
-        }
+
+        dropdownMenu.setAdapter(arrayAdapter)
     }
 
     private fun setButton(
         convertButton: Button,
-        fromSpinner: Spinner,
-        toSpinner: Spinner,
+        fromDropdownMenu: AutoCompleteTextView,
+        toDropdownMenu: AutoCompleteTextView,
         inputEditText: EditText,
         outputTextView: TextView
     ) {
@@ -71,8 +68,8 @@ class MainActivity : AppCompatActivity() {
             Converter(
                 lengthUnits,
                 weightUnits,
-                fromSpinner.selectedItem.toString(),
-                toSpinner.selectedItem.toString(),
+                fromDropdownMenu.text.toString(),
+                toDropdownMenu.text.toString(),
                 inputEditText.text.toString().toDouble(),
                 outputTextView
             ).convert()

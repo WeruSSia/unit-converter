@@ -3,4 +3,5 @@
     <string name="convert">convert</string>
     <string name="to">to</string>
     <string name="value">Value</string>
+    <string name="unit">Unit</string>
 </resources>
