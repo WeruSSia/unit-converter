@@ -5,10 +5,9 @@ import android.widget.TextView
 class Converter(
     private val inputUnit: String,
     private val outputUnit: String,
-    private val inputValue: Double,
-    private val resultTextView: TextView
+    private val inputValue: Double
 ) {
-    fun convert() {
+    fun convert() : String{
         var outputValue = 0.0
         when (inputUnit) {
             "mm" -> when (outputUnit) {
@@ -60,7 +59,7 @@ class Converter(
                 "t" -> outputValue = inputValue
             }
         }
-        resultTextView.text = "$outputValue $outputUnit"
+        return "$outputValue $outputUnit"
 
     }
 }

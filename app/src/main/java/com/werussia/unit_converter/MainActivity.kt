@@ -101,11 +101,10 @@ class MainActivity : AppCompatActivity() {
     ) {
         convertButton.isEnabled = false
         convertButton.setOnClickListener {
-            Converter(
+            outputTextView.text = Converter(
                 inputUnitDropdownMenu.text.toString(),
                 outputUnitDropdownMenu.text.toString(),
-                inputEditText.text.toString().toDouble(),
-                outputTextView
+                inputEditText.text.toString().toDouble()
             ).convert()
         }
     }
