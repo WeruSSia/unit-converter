@@ -61,10 +61,12 @@ class MainActivity : AppCompatActivity() {
                         inputUnitDropdownMenu.setText(lengthUnits[0])
                         outputUnitDropdownMenu.setText(lengthUnits[0])
                         setDropdownMenu(inputUnitDropdownMenu, lengthUnits)
+                        setDropdownMenu(outputUnitDropdownMenu, lengthUnits)
                     }
                     "Weight" -> {
                         inputUnitDropdownMenu.setText(weightUnits[0])
                         outputUnitDropdownMenu.setText(weightUnits[0])
+                        setDropdownMenu(inputUnitDropdownMenu, weightUnits)
                         setDropdownMenu(outputUnitDropdownMenu, weightUnits)
                     }
                 }
