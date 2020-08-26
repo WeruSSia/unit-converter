@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setUnitChoice(unitChoiceDropdownMenu, inputUnitDropdownMenu, outputUnitDropdownMenu)
 
         val inputEditText: EditText = findViewById(R.id.input_value)
-        val outputTextView: TextView = findViewById(R.id.result_text_view)
+        val resultTextView: TextView = findViewById(R.id.result_text_view)
         val convertButton: Button = findViewById(R.id.convert_button)
 
         setButton(
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             inputUnitDropdownMenu,
             outputUnitDropdownMenu,
             inputEditText,
-            outputTextView
+            resultTextView
         )
 
         inputEditText.addTextChangedListener(textWatcher)
@@ -97,11 +97,11 @@ class MainActivity : AppCompatActivity() {
         inputUnitDropdownMenu: AutoCompleteTextView,
         outputUnitDropdownMenu: AutoCompleteTextView,
         inputEditText: EditText,
-        outputTextView: TextView
+        resultTextView: TextView
     ) {
         convertButton.isEnabled = false
         convertButton.setOnClickListener {
-            outputTextView.text = Converter(
+            resultTextView.text = Converter(
                 inputUnitDropdownMenu.text.toString(),
                 outputUnitDropdownMenu.text.toString(),
                 inputEditText.text.toString().toDouble()
