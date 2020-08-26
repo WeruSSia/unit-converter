@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fromDropdownMenu: AutoCompleteTextView = findViewById(R.id.from_unit_dropdown)
+        fromDropdownMenu.setText(lengthUnits[0])
         val toDropdownMenu: AutoCompleteTextView = findViewById(R.id.to_unit_dropdown)
+        toDropdownMenu.setText(lengthUnits[0])
 
         setDropdownMenu(fromDropdownMenu)
         setDropdownMenu(toDropdownMenu)
