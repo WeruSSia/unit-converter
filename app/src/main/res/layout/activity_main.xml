@@ -24,7 +24,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/amount_input"
+                android:id="@+id/input_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
@@ -46,11 +46,11 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:hint="@string/unit"
-            android:labelFor="@id/from_unit_dropdown"
+            android:labelFor="@id/input_unit_dropdown_menu"
             android:orientation="horizontal">
 
             <AutoCompleteTextView
-                android:id="@+id/from_unit_dropdown"
+                android:id="@+id/input_unit_dropdown_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none" />
@@ -58,6 +58,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/to_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -77,11 +78,11 @@
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:hint="@string/unit"
-            android:labelFor="@id/to_unit_dropdown"
+            android:labelFor="@id/output_unit_dropdown_menu"
             android:orientation="horizontal">
 
             <AutoCompleteTextView
-                android:id="@+id/to_unit_dropdown"
+                android:id="@+id/output_unit_dropdown_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none" />
@@ -98,7 +99,7 @@
         android:text="@string/convert" />
 
     <TextView
-        android:id="@+id/output_text_view"
+        android:id="@+id/result_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

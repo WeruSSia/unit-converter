@@ -4,6 +4,4 @@
     <string name="to">to</string>
     <string name="value">Value</string>
     <string name="unit">Unit</string>
-    <string name="input_unit_warning">Choose input unit!</string>
-    <string name="output_unit_warning">Choose output unit!</string>
 </resources>

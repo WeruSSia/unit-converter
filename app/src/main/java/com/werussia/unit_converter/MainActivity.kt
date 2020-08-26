@@ -16,16 +16,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fromDropdownMenu: AutoCompleteTextView = findViewById(R.id.from_unit_dropdown)
+        val fromDropdownMenu: AutoCompleteTextView = findViewById(R.id.input_unit_dropdown_menu)
         fromDropdownMenu.setText(lengthUnits[0])
-        val toDropdownMenu: AutoCompleteTextView = findViewById(R.id.to_unit_dropdown)
+        val toDropdownMenu: AutoCompleteTextView = findViewById(R.id.output_unit_dropdown_menu)
         toDropdownMenu.setText(lengthUnits[0])
 
         setDropdownMenu(fromDropdownMenu)
         setDropdownMenu(toDropdownMenu)
 
-        val inputEditText: EditText = findViewById(R.id.amount_input)
-        val outputTextView: TextView = findViewById(R.id.output_text_view)
+        val inputEditText: EditText = findViewById(R.id.input_value)
+        val outputTextView: TextView = findViewById(R.id.result_text_view)
         val convertButton: Button = findViewById(R.id.convert_button)
 
         setButton(convertButton, fromDropdownMenu, toDropdownMenu, inputEditText, outputTextView)
