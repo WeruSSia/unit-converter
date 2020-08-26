@@ -4,4 +4,5 @@
     <string name="to">to</string>
     <string name="value">Value</string>
     <string name="unit">Unit</string>
+    <string name="unit_type">Unit type</string>
 </resources>
