@@ -1,7 +1,5 @@
 package com.werussia.unit_converter
 
-import android.widget.TextView
-
 class Converter(
     private val inputUnit: String,
     private val outputUnit: String,

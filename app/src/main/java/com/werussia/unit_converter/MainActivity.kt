@@ -9,55 +9,41 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
 
-    private val lengthUnits = arrayOf("mm", "cm", "m", "km")
-    private val weightUnits = arrayOf("mg", "g", "kg", "t")
-    private val unitTypes = arrayOf("Length", "Weight")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val unitChoiceDropdownMenu = unit_choice_dropdown_menu
-        unitChoiceDropdownMenu.setText(unitTypes[0])
-        setDropdownMenu(unitChoiceDropdownMenu, unitTypes)
+        unit_choice_dropdown_menu.setText(UnitType.getAliases().first())
+        setDropdownMenu(unit_choice_dropdown_menu, UnitType)
 
-        val inputUnitDropdownMenu = input_unit_dropdown_menu
-        inputUnitDropdownMenu.setText(lengthUnits[0])
-        setDropdownMenu(inputUnitDropdownMenu, lengthUnits)
+        input_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
+        setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
 
-        val outputUnitDropdownMenu = output_unit_dropdown_menu
-        outputUnitDropdownMenu.setText(lengthUnits[0])
-        setDropdownMenu(outputUnitDropdownMenu, lengthUnits)
+        output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
+        setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
 
-        setUnitChoice(unitChoiceDropdownMenu, inputUnitDropdownMenu, outputUnitDropdownMenu)
+        setUnitChoice()
 
-        setConvertButton(
-            inputUnitDropdownMenu,
-            outputUnitDropdownMenu
-        )
+        setConvertButton()
 
         input_value.addTextChangedListener(textWatcher)
     }
 
-    private fun setUnitChoice(
-        unitChoiceDropdownMenu: AutoCompleteTextView,
-        inputUnitDropdownMenu: AutoCompleteTextView,
-        outputUnitDropdownMenu: AutoCompleteTextView
-    ) {
-        unitChoiceDropdownMenu.onItemClickListener =
+    private fun setUnitChoice() {
+        unit_choice_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 when (parent.getItemAtPosition(position).toString()) {
                     "Length" -> {
-                        inputUnitDropdownMenu.setText(lengthUnits[0])
-                        outputUnitDropdownMenu.setText(lengthUnits[0])
-                        setDropdownMenu(inputUnitDropdownMenu, lengthUnits)
-                        setDropdownMenu(outputUnitDropdownMenu, lengthUnits)
+                        input_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
+                        output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
+                        setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
+                        setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
                     }
                     "Weight" -> {
-                        inputUnitDropdownMenu.setText(weightUnits[0])
-                        outputUnitDropdownMenu.setText(weightUnits[0])
-                        setDropdownMenu(inputUnitDropdownMenu, weightUnits)
-                        setDropdownMenu(outputUnitDropdownMenu, weightUnits)
+                        input_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
+                        output_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
+                        setDropdownMenu(input_unit_dropdown_menu, WeightUnit)
+                        setDropdownMenu(output_unit_dropdown_menu, WeightUnit)
                     }
                 }
             }
@@ -75,24 +61,21 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun setDropdownMenu(dropdownMenu: AutoCompleteTextView, list: Array<String>) {
+    private fun setDropdownMenu(dropdownMenu: AutoCompleteTextView, list: AliasesHolder) {
         val arrayAdapter = ArrayAdapter(
             this,
             R.layout.dropdown_menu_popup_item,
-            list
+            list.getAliases().toTypedArray()
         )
         dropdownMenu.setAdapter(arrayAdapter)
     }
 
-    private fun setConvertButton(
-        inputUnitDropdownMenu: AutoCompleteTextView,
-        outputUnitDropdownMenu: AutoCompleteTextView
-    ) {
+    private fun setConvertButton() {
         convert_button.isEnabled = false
         convert_button.setOnClickListener {
             result_text_view.text = Converter(
-                inputUnitDropdownMenu.text.toString(),
-                outputUnitDropdownMenu.text.toString(),
+                input_unit_dropdown_menu.text.toString(),
+                output_unit_dropdown_menu.text.toString(),
                 input_value.text.toString().toDouble()
             ).convert()
         }
