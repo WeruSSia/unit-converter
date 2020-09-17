@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:focusable="false"/>
+                android:focusable="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -41,6 +41,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -48,8 +49,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="@string/value"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="@string/value">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_value"
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:focusable="false"/>
+                android:focusable="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:focusable="false"/>
+                android:focusable="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>

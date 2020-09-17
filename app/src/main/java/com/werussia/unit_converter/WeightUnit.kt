@@ -22,7 +22,7 @@ enum class WeightUnit : ConverterUnit {
         override val alias = "lb"
     };
 
-    companion object :AliasesHolder{
+    companion object : AliasesHolder {
         override fun getAliases(): List<String> {
             return values().map { it.alias }
         }

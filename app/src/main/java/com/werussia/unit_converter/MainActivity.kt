@@ -9,6 +9,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
 
+    private var selectedUnitType: UnitType = UnitType.LENGTH
+    private var selectedInputUnitIndex: Int = 0
+    private var selectedOutputUnitIndex: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,30 +26,48 @@ class MainActivity : Activity() {
         output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
         setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
 
-        setUnitChoice()
+        setUnitsChoice()
+        setInputUnitListener()
+        setOutputUnitListener()
 
         setConvertButton()
 
         input_value.addTextChangedListener(textWatcher)
     }
 
-    private fun setUnitChoice() {
+    private fun setUnitsChoice() {
         unit_choice_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 when (parent.getItemAtPosition(position).toString()) {
                     "Length" -> {
+                        selectedUnitType = UnitType.LENGTH
                         input_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
                         output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
                         setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
                     }
                     "Weight" -> {
+                        selectedUnitType = UnitType.WEIGHT
                         input_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
                         output_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, WeightUnit)
                         setDropdownMenu(output_unit_dropdown_menu, WeightUnit)
                     }
                 }
+            }
+    }
+
+    private fun setInputUnitListener() {
+        input_unit_dropdown_menu.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                selectedInputUnitIndex = position
+            }
+    }
+
+    private fun setOutputUnitListener() {
+        output_unit_dropdown_menu.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                selectedOutputUnitIndex = position
             }
     }
 
@@ -73,11 +95,16 @@ class MainActivity : Activity() {
     private fun setConvertButton() {
         convert_button.isEnabled = false
         convert_button.setOnClickListener {
-            result_text_view.text = Converter(
-                input_unit_dropdown_menu.text.toString(),
-                output_unit_dropdown_menu.text.toString(),
-                input_value.text.toString().toDouble()
-            ).convert()
+            result_text_view.text = convert().toString()
+        }
+    }
+
+    private fun convert(): Double {
+        return when (selectedUnitType) {
+            UnitType.LENGTH -> input_value.text.toString()
+                .toDouble() * LengthUnit.values()[selectedOutputUnitIndex].factor / LengthUnit.values()[selectedInputUnitIndex].factor
+            UnitType.WEIGHT -> input_value.text.toString()
+                .toDouble() * WeightUnit.values()[selectedOutputUnitIndex].factor / WeightUnit.values()[selectedInputUnitIndex].factor
         }
     }
 }
