@@ -67,6 +67,16 @@ class MainActivity : Activity() {
                             result_text_view.text = convert().toString()
                         }
                     }
+                    UnitType.TIME.alias -> {
+                        selectedUnitType = UnitType.TIME
+                        input_unit_dropdown_menu.setText(TimeUnit.getAliases().first())
+                        output_unit_dropdown_menu.setText(TimeUnit.getAliases().first())
+                        setDropdownMenu(input_unit_dropdown_menu, TimeUnit)
+                        setDropdownMenu(output_unit_dropdown_menu, TimeUnit)
+                        if (input_value.text.toString() != "") {
+                            result_text_view.text = convert().toString()
+                        }
+                    }
                 }
             }
     }
@@ -122,6 +132,8 @@ class MainActivity : Activity() {
                 .toDouble() * WeightUnit.values()[selectedOutputUnitIndex].factor / WeightUnit.values()[selectedInputUnitIndex].factor
             UnitType.PRESSURE -> input_value.text.toString()
                 .toDouble() * PressureUnit.values()[selectedOutputUnitIndex].factor / PressureUnit.values()[selectedInputUnitIndex].factor
+            UnitType.TIME -> input_value.text.toString()
+                .toDouble() * TimeUnit.values()[selectedOutputUnitIndex].factor / TimeUnit.values()[selectedInputUnitIndex].factor
         }
     }
 }
