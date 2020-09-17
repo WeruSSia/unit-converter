@@ -30,8 +30,6 @@ class MainActivity : Activity() {
         setInputUnitListener()
         setOutputUnitListener()
 
-        setConvertButton()
-
         input_value.addTextChangedListener(textWatcher)
     }
 
@@ -45,6 +43,7 @@ class MainActivity : Activity() {
                         output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
                         setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
+                        result_text_view.text = convert().toString()
                     }
                     "Weight" -> {
                         selectedUnitType = UnitType.WEIGHT
@@ -52,6 +51,7 @@ class MainActivity : Activity() {
                         output_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, WeightUnit)
                         setDropdownMenu(output_unit_dropdown_menu, WeightUnit)
+                        result_text_view.text = convert().toString()
                     }
                 }
             }
@@ -61,6 +61,7 @@ class MainActivity : Activity() {
         input_unit_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedInputUnitIndex = position
+                result_text_view.text = convert().toString()
             }
     }
 
@@ -68,6 +69,7 @@ class MainActivity : Activity() {
         output_unit_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedOutputUnitIndex = position
+                result_text_view.text = convert().toString()
             }
     }
 
@@ -79,7 +81,7 @@ class MainActivity : Activity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            convert_button.isEnabled = s.toString() != ""
+            result_text_view.text = convert().toString()
         }
     }
 
@@ -90,13 +92,6 @@ class MainActivity : Activity() {
             list.getAliases().toTypedArray()
         )
         dropdownMenu.setAdapter(arrayAdapter)
-    }
-
-    private fun setConvertButton() {
-        convert_button.isEnabled = false
-        convert_button.setOnClickListener {
-            result_text_view.text = convert().toString()
-        }
     }
 
     private fun convert(): Double {
