@@ -37,21 +37,35 @@ class MainActivity : Activity() {
         unit_choice_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 when (parent.getItemAtPosition(position).toString()) {
-                    "Length" -> {
+                    UnitType.LENGTH.alias -> {
                         selectedUnitType = UnitType.LENGTH
                         input_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
                         output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
                         setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
-                        result_text_view.text = convert().toString()
+                        if (input_value.text.toString() != "") {
+                            result_text_view.text = convert().toString()
+                        }
                     }
-                    "Weight" -> {
+                    UnitType.WEIGHT.alias -> {
                         selectedUnitType = UnitType.WEIGHT
                         input_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
                         output_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
                         setDropdownMenu(input_unit_dropdown_menu, WeightUnit)
                         setDropdownMenu(output_unit_dropdown_menu, WeightUnit)
-                        result_text_view.text = convert().toString()
+                        if (input_value.text.toString() != "") {
+                            result_text_view.text = convert().toString()
+                        }
+                    }
+                    UnitType.PRESSURE.alias -> {
+                        selectedUnitType = UnitType.PRESSURE
+                        input_unit_dropdown_menu.setText(PressureUnit.getAliases().first())
+                        output_unit_dropdown_menu.setText(PressureUnit.getAliases().first())
+                        setDropdownMenu(input_unit_dropdown_menu, PressureUnit)
+                        setDropdownMenu(output_unit_dropdown_menu, PressureUnit)
+                        if (input_value.text.toString() != "") {
+                            result_text_view.text = convert().toString()
+                        }
                     }
                 }
             }
@@ -61,7 +75,9 @@ class MainActivity : Activity() {
         input_unit_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedInputUnitIndex = position
-                result_text_view.text = convert().toString()
+                if (input_value.text.toString() != "") {
+                    result_text_view.text = convert().toString()
+                }
             }
     }
 
@@ -69,7 +85,9 @@ class MainActivity : Activity() {
         output_unit_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedOutputUnitIndex = position
-                result_text_view.text = convert().toString()
+                if (input_value.text.toString() != "") {
+                    result_text_view.text = convert().toString()
+                }
             }
     }
 
@@ -81,7 +99,9 @@ class MainActivity : Activity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            result_text_view.text = convert().toString()
+            if (input_value.text.toString() != "") {
+                result_text_view.text = convert().toString()
+            }
         }
     }
 
@@ -100,6 +120,8 @@ class MainActivity : Activity() {
                 .toDouble() * LengthUnit.values()[selectedOutputUnitIndex].factor / LengthUnit.values()[selectedInputUnitIndex].factor
             UnitType.WEIGHT -> input_value.text.toString()
                 .toDouble() * WeightUnit.values()[selectedOutputUnitIndex].factor / WeightUnit.values()[selectedInputUnitIndex].factor
+            UnitType.PRESSURE -> input_value.text.toString()
+                .toDouble() * PressureUnit.values()[selectedOutputUnitIndex].factor / PressureUnit.values()[selectedInputUnitIndex].factor
         }
     }
 }
