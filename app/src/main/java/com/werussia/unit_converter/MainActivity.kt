@@ -26,59 +26,44 @@ class MainActivity : Activity() {
         output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
         setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
 
-        setUnitsChoice()
+        chooseUnitType()
         setInputUnitListener()
         setOutputUnitListener()
 
         input_value.addTextChangedListener(textWatcher)
     }
 
-    private fun setUnitsChoice() {
+    private fun chooseUnitType() {
         unit_choice_dropdown_menu.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 when (parent.getItemAtPosition(position).toString()) {
                     UnitType.LENGTH.alias -> {
-                        selectedUnitType = UnitType.LENGTH
-                        input_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
-                        output_unit_dropdown_menu.setText(LengthUnit.getAliases().first())
-                        setDropdownMenu(input_unit_dropdown_menu, LengthUnit)
-                        setDropdownMenu(output_unit_dropdown_menu, LengthUnit)
-                        if (input_value.text.toString() != "") {
-                            result_text_view.text = convert().toString()
-                        }
+                        setUnitType(UnitType.LENGTH,LengthUnit)
                     }
                     UnitType.WEIGHT.alias -> {
-                        selectedUnitType = UnitType.WEIGHT
-                        input_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
-                        output_unit_dropdown_menu.setText(WeightUnit.getAliases().first())
-                        setDropdownMenu(input_unit_dropdown_menu, WeightUnit)
-                        setDropdownMenu(output_unit_dropdown_menu, WeightUnit)
-                        if (input_value.text.toString() != "") {
-                            result_text_view.text = convert().toString()
-                        }
+                        setUnitType(UnitType.WEIGHT, WeightUnit)
                     }
                     UnitType.PRESSURE.alias -> {
-                        selectedUnitType = UnitType.PRESSURE
-                        input_unit_dropdown_menu.setText(PressureUnit.getAliases().first())
-                        output_unit_dropdown_menu.setText(PressureUnit.getAliases().first())
-                        setDropdownMenu(input_unit_dropdown_menu, PressureUnit)
-                        setDropdownMenu(output_unit_dropdown_menu, PressureUnit)
-                        if (input_value.text.toString() != "") {
-                            result_text_view.text = convert().toString()
-                        }
+                        setUnitType(UnitType.PRESSURE,PressureUnit)
                     }
                     UnitType.TIME.alias -> {
-                        selectedUnitType = UnitType.TIME
-                        input_unit_dropdown_menu.setText(TimeUnit.getAliases().first())
-                        output_unit_dropdown_menu.setText(TimeUnit.getAliases().first())
-                        setDropdownMenu(input_unit_dropdown_menu, TimeUnit)
-                        setDropdownMenu(output_unit_dropdown_menu, TimeUnit)
-                        if (input_value.text.toString() != "") {
-                            result_text_view.text = convert().toString()
-                        }
+                        setUnitType(UnitType.TIME,TimeUnit)
                     }
                 }
             }
+    }
+
+    private fun setUnitType(unitType: UnitType, aliasesHolder: AliasesHolder){
+        selectedUnitType = unitType
+        selectedInputUnitIndex = 0
+        selectedOutputUnitIndex = 0
+        input_unit_dropdown_menu.setText(aliasesHolder.getAliases().first())
+        output_unit_dropdown_menu.setText(aliasesHolder.getAliases().first())
+        setDropdownMenu(input_unit_dropdown_menu,aliasesHolder)
+        setDropdownMenu(output_unit_dropdown_menu,aliasesHolder)
+        if (input_value.text.toString() != "") {
+            result_text_view.text = convert().toString()
+        }
     }
 
     private fun setInputUnitListener() {
