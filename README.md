@@ -1,15 +1,16 @@
 # unit-converter
 Simple unit converter.
 
-## Usage example
+# Usage example
 
-### Main layout
+## Main layout
 
 ![](app/src/test/resources/main_layout.png)
 
-### Setting unit type
+## Setting unit type
 
 First, the unit type must be chosen from the dropdown menu.
+
 Possible choices are:
 * Length,
 * Weight,
@@ -18,16 +19,17 @@ Possible choices are:
 
 ![](app/src/test/resources/unit_type_choice.png)
 
-### Inputting the value
+## Inputting the value
 
 In the "Value" field, value to be converted must be inputted.
 After this step, the result is already displaying and changing depending on settings.
 
 ![](app/src/test/resources/value_input.png)
 
-### Setting input and output unit
+## Setting input and output unit
 
 The input and output unit must be chosen from the dropdown menus.
+
 Possible choices are:
 * Length:
   * millimeters,
@@ -63,6 +65,6 @@ Possible choices are:
   
 ![](app/src/test/resources/output_unit_choice.png)
 
-### Result
+## Result
 
 ![](app/src/test/resources/result_display.png)
